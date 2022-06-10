@@ -4,41 +4,41 @@ pub struct MathDisplayer<'a, T> {
     pub value: &'a T
 }
 
-pub trait DisplayerExt : Sized {
+pub trait MathDisplayerExt : Sized {
     fn display(&self) -> MathDisplayer<'_, Self>;
 }
 
-impl DisplayerExt for Transform {
+impl MathDisplayerExt for Transform {
     fn display(&self) -> MathDisplayer<Self> {
         MathDisplayer { value: self }
     }
 }
 
-impl DisplayerExt for GlobalTransform {
+impl MathDisplayerExt for GlobalTransform {
     fn display(&self) -> MathDisplayer<Self> {
         MathDisplayer { value: self }
     }
 }
 
-impl DisplayerExt for Vec2 {
+impl MathDisplayerExt for Vec2 {
     fn display(&self) -> MathDisplayer<Self> {
         MathDisplayer { value: self }
     }
 }
 
-impl DisplayerExt for Vec3 {
+impl MathDisplayerExt for Vec3 {
     fn display(&self) -> MathDisplayer<Self> {
         MathDisplayer { value: self }
     }
 }
 
-impl DisplayerExt for Vec4 {
+impl MathDisplayerExt for Vec4 {
     fn display(&self) -> MathDisplayer<Self> {
         MathDisplayer { value: self }
     }
 }
 
-impl DisplayerExt for Quat {
+impl MathDisplayerExt for Quat {
     fn display(&self) -> MathDisplayer<Self> {
         MathDisplayer { value: self }
     }
@@ -51,16 +51,13 @@ impl std::fmt::Display for MathDisplayer<'_, Transform> {
             rotation,
             scale,
         } = self.value;
-        let (t, r, s) = (
-            translation.as_ref(),
-            rotation.as_ref(),
-            scale.as_ref()
-        );
-        if let Some(p) = f.precision() {
-            write!(f, "{{ {:.p$?}, {:.p$?}, {:.p$?} }}", t, r, s)
-        } else {
-            write!(f, "{{ {:?}, {:?}, {:?} }}", t, r, s)
-        }
+        write!(f, "{{ ")?;
+        translation.display().fmt(f)?;
+        write!(f, ", ")?;
+        rotation.display().fmt(f)?;
+        write!(f, ", ")?;
+        scale.display().fmt(f)?;
+        write!(f, " }}")
     }
 }
 

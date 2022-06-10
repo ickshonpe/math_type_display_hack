@@ -1,0 +1,15 @@
+[package]
+name = "math_type_display_hack"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+keywords = ["bevy", "gamedev", "math"]
+categories = ["game-development"]
+repository = "https://github.com/ickshonpe/math_type_display_hack"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.bevy]
+version = "0.7.0"
+default-features = false
+
