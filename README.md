@@ -1,11 +1,8 @@
 # math type display hack
 
-Bevy doesn't implement ```Display``` for its math types like ```Transform``` and ```GlobalTransform```,
-so I hacked this together.
+Bashed this together because Bevy doesn't implement ```Display``` for its math types like ```Transform``` and ```GlobalTransform```.
 
-There is probably a better way to do this.
-
-## example
+## examples
 
 ### With ```Debug```:
 ```rust
